@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>香港歷史知識問答</title>
+    <title>9号展览厅-日军侵港</title>
     <style>
         * {
             margin: 0;
@@ -64,6 +64,7 @@
             border-radius: 8px;
             overflow: hidden;
             background: #000;
+            margin-bottom:16px;
         }
         .video-box video,
         .video-box iframe {
@@ -187,7 +188,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>香港歷史知識問答</h1>
+            <h1>9号展览厅-日军侵港</h1>
             <p>了解香港發展歷史，學習正確歷史知識</p>
         </header>
 
@@ -196,16 +197,10 @@
             <p>本問答題庫圍繞9號展廳相關展品與歷史內容設置考題，認識香港保衛戰及日佔時期歷史。完成答題可查看得分與解析，樹立正確歷史觀。</p>
         </div>
 
-        <!-- 影片模組 -->
+        <!-- 中文影片模組 -->
         <div class="video-wrap">
-            <h3>🎬 9號館歷史簡單了解</h3>
+            <h3>🎬 9號館 中文介紹影片</h3>
             <div class="video-box">
-                <!-- 方案1：本地影片（離線使用，將mp4檔案放入同目錄修改src即可） -->
-                <!-- <video controls preload="auto">
-                    <source src="hk-history.mp4" type="video/mp4">
-                    您的瀏覽器不支援影片播放
-                </video> -->
-
                 <!-- B站嵌入影片 BV1eFgQ6bESE -->
                 <iframe 
                     src="https://player.bilibili.com/player.html?bvid=BV1eFgQ6bESE&autoplay=0&danmaku=0" 
@@ -217,8 +212,21 @@
             <p style="margin-top:10px;color:#666;font-size:14px;">建議看完影片再開始答題，加深歷史記憶</p>
         </div>
 
+        <!-- 新增英文介紹影片 Google Drive -->
+        <div class="video-wrap">
+            <h3>🎬 9號館 English Introduction Video</h3>
+            <div class="video-box">
+                <iframe 
+                    src="https://drive.google.com/file/d/1vvi6kdNAkOT2TSFFnn7xbg7MUhXK_vKF/preview" 
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="margin-top:10px;color:#666;font-size:14px;">English version introduction video of Exhibition Hall 9</p>
+        </div>
+
         <div class="quiz-box">
-            <div class="question-num" id="qNum">題目 1 / 10</div>
+            <div class="question-num" id="qNum">題目 1 / 8</div>
             <div class="question-title" id="question"></div>
             <ul class="options-list" id="options"></ul>
             <div class="tip-box" id="answerTip"></div>
@@ -229,7 +237,7 @@
             </div>
 
             <div class="score-panel">
-                <h4>當前得分：<span id="score">0</span> / <span id="total">10</span></h4>
+                <h4>當前得分：<span id="score">0</span> / <span id="total">8</span></h4>
             </div>
         </div>
 
@@ -239,64 +247,52 @@
     </div>
 
     <script>
-        // 9號館全新題庫（全繁體）
+        // 9號館更新後8道繁體題目
         const quizData = [
             {
-                question: "1. 9號館的核心主題是什麼？",
+                question: "1. 9 號館的核心主題是什麼:",
                 options: ["A. 香港戰後重建發展","B. 日軍侵港歷史","C. 香港近代商貿發展","D. 港澳軍民聯合抗戰史"],
                 answer: "B",
-                explain: "原文明確指出9號館主題為日軍侵港，依托館藏史料還原香港保衛戰相關歷史。"
+                explain: "原文明確指出 9 號館主題為日軍侵港，依托館藏史料還原香港保衛戰相關歷史。"
             },
             {
-                question: "2. 9號館整體敘事分為三大板塊，下列不屬於三大板塊的是？",
+                question: "2. 9 號館整體敘事分為三大板塊，下列不屬於三大板塊的是:",
                 options: ["A. 戰前備戰","B. 戰時攻防","C. 戰後復興","D. 戰俘苦難"],
                 answer: "C",
                 explain: "展館三大敘事板塊為戰前備戰、戰時攻防、戰俘苦難，無戰後復興板塊。"
             },
             {
-                question: "3. 9號館開篇展區的核心物證不包括以下哪一項？",
-                options: ["A. 防空手搖警報器","B. 英軍防毒面具","C. 戰俘手寫家書","D. 1941年市區機槍堡壘舊照"],
+                question: "3. 9 號館開篇展區的核心物證不包括以下哪一項:",
+                options: ["A. 防空手搖警報器","B. 英軍防毒面具","C. 戰俘手寫家書","D. 1941 年市區機槍堡壘舊照"],
                 answer: "C",
                 explain: "戰俘手寫家書屬於展廳後半段淪陷戰俘展區展品，不屬於開篇戰前備戰展區物證。"
             },
             {
-                question: "4. 開篇展區透過大佛口街頭機槍工事照片及防護器具，印證的歷史背景是？",
+                question: "4. 開篇展區透過大佛口街頭機槍工事照片及防護器具，印證的歷史背景是:",
                 options: ["A. 香港防務儲備不足，戰前倉促佈防","B. 香港守軍軍備充足、備戰充分","C. 日軍戰前長期駐紮香港","D. 香港市民提前疏散、遠離戰亂"],
                 answer: "A",
                 explain: "開篇展區展品與照片，直觀展現市民直面空襲威脅、英軍倉促佈防的局面，印證香港防務儲備不足的歷史背景。"
             },
             {
-                question: "5. 展廳中段核心展區陳列的日軍戰地軍械是？",
+                question: "5. 展廳中段核心展區陳列的日軍戰地軍械是:",
                 options: ["A. 六二式野戰電話","B. 九二式野戰電話","C. 八五式步槍","D. 九九式重機槍"],
                 answer: "B",
                 explain: "展廳中段陳列日軍九二式野戰電話、軍用步槍、鋼盔等戰地軍械。"
             },
             {
-                question: "6. 9號館重點還原的香港保衛戰持續時長為？",
+                question: "6. 9 號館重點還原的香港保衛戰持續時長為:",
                 options: ["A. 十八天","B. 一個月","C. 三個月","D. 三年零八個月"],
                 answer: "A",
-                explain: "展館完整還原1941年十八天香港保衛戰全貌。"
+                explain: "展館完整還原 1941 年十八天香港保衛戰全貌。"
             },
             {
-                question: "7. 展廳後半段敘事核心圍繞的歷史內容是？",
-                options: ["A. 英軍戰略撤退部署","B. 淪陷後的戰俘苦難","C. 日軍戰前籌備行動","D. 香港市民自發起義"],
-                answer: "B",
-                explain: "展廳後半段聚焦香港淪陷後，三年零八個月日佔時期的戰俘苦難與戰爭創傷。"
-            },
-            {
-                question: "8. 展館中用來佐證戰俘悲慘遭遇的核心展品是？",
-                options: ["A. 英軍遺留鋼盔","B. 海陸攻防紀實影像","C. 瓶蓋手寫家書複製品","D. 戰時機槍工事殘骸"],
-                answer: "C",
-                explain: "戰俘藏於瓶蓋的手寫家書複製品、戰俘押送歷史照片，是揭露戰俘苦難的核心敘事展品。"
-            },
-            {
-                question: "9. 香港日佔時期的時長為？",
+                question: "7. 香港日佔時期的時長為:",
                 options: ["A. 一年零八個月","B. 兩年零八個月","C. 三年零八個月","D. 五年零八個月"],
                 answer: "C",
-                explain: "展館明確記載香港為三年零八個月日佔時期。"
+                explain: "香港日佔時期為三年零八個月，展廳後半段聚焦香港淪陷後戰俘苦難與戰爭創傷。"
             },
             {
-                question: "10. 9號館的核心敘事特點是？",
+                question: "8. 9 號館的核心敘事特點是:",
                 options: ["A. 以抽象歷史文字為主，實物展品為輔","B. 全部依托館藏實物、照片、戰地遺存以物證史","C. 重點講述全國抗戰主流戰役，弱化香港史實","D. 僅記錄日軍作戰過程，無軍民抗爭內容"],
                 answer: "B",
                 explain: "整間展廳不依靠抽象文字敘事，全部以戰爭遺存、館藏實物、歷史照片為史料根基，以物證史。"
