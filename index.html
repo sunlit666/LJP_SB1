@@ -29,15 +29,37 @@
             background: #b82601;
             color: white;
             padding: 24px;
-            text-align: center;
         }
-        header h1 {
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .header-text {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+        }
+        .header-text h1 {
             font-size: 28px;
             margin-bottom: 8px;
         }
-        header p {
+        .header-text p {
             opacity: 0.9;
             font-size: 16px;
+        }
+        .header-link a {
+            color: #ffffff;
+            text-decoration: underline;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+        .header-link a:hover {
+            color: #ffffcc;
         }
         .intro {
             padding: 24px;
@@ -49,7 +71,83 @@
             margin-bottom: 10px;
         }
 
-        /* 影片區域樣式 */
+        /* 分頁切換標籤樣式 */
+        .tab-nav {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            background: #fff;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            background: #fafafa;
+            color: #666;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0;
+        }
+        .tab-btn.active {
+            background: #b82601;
+            color: white;
+            font-weight: bold;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #fff2f2;
+            color: #b82601;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* 展廳詳細文字介紹樣式 */
+        .hall-intro {
+            padding: 24px;
+            background: #ffffff;
+            line-height: 1.9;
+        }
+        .hall-intro h3 {
+            color: #b82601;
+            margin-bottom: 14px;
+        }
+        .hall-intro p {
+            margin-bottom: 14px;
+            text-align: justify;
+            color: #333;
+        }
+        .hall-intro .intro-img {
+            width: 100%;
+            max-width: 650px;
+            margin: 16px auto 10px;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .hall-intro .img-caption {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .img-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 16px 0 24px;
+        }
+        .img-group .img-item {
+            flex: 1;
+            min-width: 280px;
+        }
+        .img-group .intro-img {
+            margin: 0 auto 8px;
+        }
+
+        /* 影片模組通用樣式 */
         .video-wrap {
             padding: 24px;
             background: #fef6f6;
@@ -73,7 +171,10 @@
             aspect-ratio: 16 / 9;
             border: none;
         }
-
+        .video-desc{
+            color:#666;
+            font-size:14px;
+        }
         .quiz-box {
             padding: 30px;
         }
@@ -102,7 +203,7 @@
             border-color: #b82601;
             background: #fff2f2;
         }
-        /* 答題狀態樣式 */
+        /* 答題標記樣式 */
         .option-correct {
             background: #e6f9e6 !important;
             border-color: #009944 !important;
@@ -173,11 +274,22 @@
             border-top: 1px solid #eee;
         }
         @media(max-width:600px){
-            header h1 {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-text {
+                text-align: center;
+            }
+            .header-text h1 {
                 font-size: 22px;
             }
-            .quiz-box, .video-wrap, .intro {
+            .hall-intro, .quiz-box, .video-wrap, .intro {
                 padding: 16px;
+            }
+            .tab-btn {
+                padding: 12px;
+                font-size: 15px;
             }
             button {
                 width: 100%;
@@ -188,8 +300,17 @@
 <body>
     <div class="container">
         <header>
-            <h1>9號展覽廳-日軍侵港(問答)</h1>
-            <p>了解香港發展歷史，學習正確歷史知識（9號館主題）</p>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>9號展覽廳-日軍侵港(問答)</h1>
+                    <p>了解香港發展歷史，學習正確歷史知識（9號館主題）</p>
+                </div>
+                <div class="header-link">
+                    <a href="https://ks.wjx.com/vm/PikYVGm.aspx" target="_blank" rel="noopener noreferrer">
+                        問答提交網站
+                    </a>
+                </div>
+            </div>
         </header>
 
         <div class="intro">
@@ -197,47 +318,91 @@
             <p>本問答題庫圍繞9號展廳相關展品與歷史內容設置考題，認識香港保衛戰及日佔時期歷史。完成答題可查看得分與解析，樹立正確歷史觀。</p>
         </div>
 
-        <!-- 中文影片模組 -->
-        <div class="video-wrap">
-            <h3>🎬 9號館 中文介紹影片</h3>
-            <div class="video-box">
-                <!-- B站嵌入影片 BV1eFgQ6bESE -->
-                <iframe 
-                    src="https://player.bilibili.com/player.html?bvid=BV1eFgQ6bESE&autoplay=0&danmaku=0" 
-                    frameborder="0" 
-                    allowfullscreen
-                    allow="encrypted-media">
-                </iframe>
-            </div>
-            <p style="margin-top:10px;color:#666;font-size:14px;">建議看完影片再開始答題，加深歷史記憶</p>
+        <!-- 分頁切換標籤 -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="intro">🏛️ 展廳介紹</button>
+            <button class="tab-btn" data-tab="quiz">📝 問答測驗</button>
         </div>
 
-        <!-- 新增英文介紹影片 Google Drive -->
-        <div class="video-wrap">
-            <h3>🎬 9號館 English Introduction Video</h3>
-            <div class="video-box">
-                <iframe 
-                    src="https://drive.google.com/file/d/1vvi6kdNAkOT2TSFFnn7xbg7MUhXK_vKF/preview" 
-                    frameborder="0" 
-                    allowfullscreen>
-                </iframe>
+        <!-- 第一頁：展廳文字介紹 + 展品圖片位置 -->
+        <div class="tab-pane active" id="tab-intro">
+            <div class="hall-intro">
+                <h3>9號展廳詳細介紹</h3>
+                <p>9 號館主題為日軍侵港，全部敘事均依託博物館珍藏實物、歷史照片與戰地遺存展開，完整還原 1941 年十八天香港保衛戰全貌，分戰前備戰、戰時攻防及戰俘苦難三大板塊敘事。</p>
+
+                <!-- 開篇展區展品組：防毒面具、空襲警報器 -->
+                <div class="img-group">
+                    <div class="img-item">
+                        <img src="防毒面具.jpg" alt="防毒面具" class="intro-img">
+                        <p class="img-caption">▲ 防毒面具</p>
+                    </div>
+                    <div class="img-item">
+                        <img src="空襲警報器.jpg" alt="空襲警報器" class="intro-img">
+                        <p class="img-caption">▲ 空襲警報器</p>
+                    </div>
+                </div>
+
+                <!-- 大佛口機槍堡舊照 -->
+                <img src="機槍堡舊照.jpg" alt="圖中的機槍堡位於皇后大道東和軒尼詩道（大佛口）交界，攝於1941年開戰前。" class="intro-img">
+                <p class="img-caption">▲ 圖中的機槍堡位於皇后大道東和軒尼詩道（大佛口）交界，攝於1941年開戰前。</p>
+
+                <p>開篇展區以防空手搖警報器、英軍防毒面具及 1941 年市區機槍堡壘舊照為核心物證，還原開戰前香港全城備戰狀態。黑白老照片定格大佛口街頭機槍工事，搭配戰時防空防護器具，展現當年香港市民正面受空襲威脅、英軍倉促佈防的緊張時局，以實物印證香港防務儲備不足的歷史背景。</p>
+
+                <p>展廳中段為戰役核心展區，陳列日軍九二式野戰電話、軍用步槍、鋼盔與英軍遺留槍械等戰地軍械，搭配海陸攻防紀實影像，完整梳理日軍突襲、港島陣地拉鋸戰、守軍節節退守直至投降的過程。一件件銹蝕武器作為戰場直接遺存，具體還原十八天血戰的慘烈，見證守軍與平民殊死抵抗的不屈意志。</p>
+
+                <!-- 戰俘押運歷史照片 -->
+                <img src="戰俘押運舊照.jpg" alt="1941年12月25日香港淪陷後，戰俘在日軍看守下徒步前往戰俘營。" class="intro-img">
+                <p class="img-caption">▲ 1941年12月25日香港淪陷後，戰俘在日軍看守下徒步前往戰俘營。</p>
+
+                <p>後半段聚焦淪陷後的戰俘苦難，以戰俘藏於瓶蓋的手寫家書複製品以及戰俘徒步被押往集中營歷史照片為敘事核心。黑白影像記錄英軍及本地守軍被日軍押送的場景，殘缺家書留存戰俘饑寒交迫、思念親人的文字，揭露三年零八個月日占時期戰俘營的殘酷淒慘境況，承載著戰爭帶給平民百姓的深重創傷。</p>
+
+                <p>整間展廳不依靠抽象文字敘事，全部以可觸摸、可觀賞的戰爭遺存物品為史料根基。軍械、防護用具、戰地影像、戰俘書信互為佐證，串聯起香港淪陷完整史實。展品無聲訴說家國苦難，既銘記軍民並肩抗爭的精神，也留存戰爭傷痛記憶，引導參觀者立足實物讀懂香港在全國抗戰中的獨特位置，以物證史，勿忘戰爭苦難，珍愛和平。</p>
             </div>
-            <p style="margin-top:10px;color:#666;font-size:14px;">English version introduction video of Exhibition Hall 9</p>
         </div>
 
-        <div class="quiz-box">
-            <div class="question-num" id="qNum">題目 1 / 8</div>
-            <div class="question-title" id="question"></div>
-            <ul class="options-list" id="options"></ul>
-            <div class="tip-box" id="answerTip"></div>
-
-            <div class="btn-group">
-                <button id="nextBtn" disabled>下一題</button>
-                <button id="resetBtn">重新答題</button>
+        <!-- 第二頁：影片 + 問答測驗 -->
+        <div class="tab-pane" id="tab-quiz">
+            <!-- 中文介紹影片 -->
+            <div class="video-wrap">
+                <h3>🎬 9號館 中文介紹影片</h3>
+                <div class="video-box">
+                    <iframe 
+                        src="https://player.bilibili.com/player.html?bvid=BV1eFgQ6bESE&autoplay=0&danmaku=0" 
+                        frameborder="0" 
+                        allowfullscreen
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <p class="video-desc">建議先觀看中文影片，認識9號館完整展覽脈絡</p>
             </div>
 
-            <div class="score-panel">
-                <h4>當前得分：<span id="score">0</span> / <span id="total">8</span></h4>
+            <!-- 英文介紹影片 Google Drive -->
+            <div class="video-wrap">
+                <h3>🎬 9號館 English Introduction Video</h3>
+                <div class="video-box">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1vvi6kdNAkOT2TSFFnn7xbg7MUhXK_vKF/preview" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="video-desc">English version introduction video of Exhibition Hall 9<br><span style="font-size:13px;color:#999;"></span></p>
+            </div>
+
+            <div class="quiz-box">
+                <div class="question-num" id="qNum">題目 1 / 8</div>
+                <div class="question-title" id="question"></div>
+                <ul class="options-list" id="options"></ul>
+                <div class="tip-box" id="answerTip"></div>
+
+                <div class="btn-group">
+                    <button id="nextBtn" disabled>下一題</button>
+                    <button id="resetBtn">重新答題</button>
+                </div>
+
+                <div class="score-panel">
+                    <h4>當前得分：<span id="score">0</span> / <span id="total">8</span></h4>
+                </div>
             </div>
         </div>
 
@@ -247,7 +412,22 @@
     </div>
 
     <script>
-        // 9號館更新後8道繁體題目
+        // 分頁切換邏輯（和8號館完全一致）
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabPanes = document.querySelectorAll(".tab-pane");
+        tabBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.dataset.tab;
+                // 切換按鈕狀態
+                tabBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                // 切換內容顯示
+                tabPanes.forEach(pane => pane.classList.remove("active"));
+                document.getElementById("tab-" + target).classList.add("active");
+            });
+        });
+
+        // 9號館8道繁體題目
         const quizData = [
             {
                 question: "1. 9 號館的核心主題是什麼:",
@@ -314,10 +494,9 @@
         const scoreEl = document.getElementById("score");
         const totalEl = document.getElementById("total");
 
-        // 初始化總題目數量
         totalEl.textContent = quizData.length;
 
-        // 渲染當前題目
+        // 渲染題目
         function renderQuiz(){
             answered = false;
             tipEl.style.display = "none";
@@ -327,7 +506,6 @@
             questionEl.textContent = item.question;
             optionsEl.innerHTML = "";
 
-            // 生成選項列表
             item.options.forEach(opt => {
                 const li = document.createElement("li");
                 li.textContent = opt;
@@ -344,7 +522,6 @@
             const qItem = quizData[currentIndex];
             const selectKey = selectOpt.split(".")[0];
 
-            // 遍歷所有選項，標記正確/錯誤
             const allLi = optionsEl.querySelectorAll("li");
             allLi.forEach(li=>{
                 const key = li.textContent.split(".")[0];
@@ -356,7 +533,6 @@
                 li.style.pointerEvents = "none";
             })
 
-            // 計算得分+展示解析提示
             tipEl.style.display = "block";
             if(selectKey === qItem.answer){
                 score++;
@@ -369,26 +545,20 @@
             }
         }
 
-        // 下一題點擊事件
+        // 下一題
         nextBtn.addEventListener("click", ()=>{
             if(currentIndex < quizData.length - 1){
                 currentIndex++;
                 renderQuiz();
             }else{
-                // 全部答完彈窗總結
                 const fullScore = quizData.length;
                 const rate = score / fullScore;
-                let msg = "";
-                if(rate >= 0.7){
-                    msg = "展廳歷史知識掌握優秀！";
-                }else{
-                    msg = "建議重新觀看影片複習相關展廳歷史知識點";
-                }
+                let msg = rate >= 0.7 ? "展廳歷史知識掌握優秀！" : "建議重新觀看中英文影片複習相關知識點";
                 alert(`答題完成！你的總分：${score} / ${fullScore}\n${msg}`);
             }
         })
 
-        // 重置全部答題
+        // 重置答題
         resetBtn.addEventListener("click", ()=>{
             currentIndex = 0;
             score = 0;
@@ -396,7 +566,6 @@
             renderQuiz();
         })
 
-        // 頁面載入完成渲染第一題
         window.onload = renderQuiz;
     </script>
 </body>
